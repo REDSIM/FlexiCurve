@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 1, g: 1, b: 1, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -37,8 +37,8 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_Sun: {fileID: 705507994}
+  m_IndirectSpecularColor: {r: 0.17971, g: 0.22501686, b: 0.30653787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -471,13 +471,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: 0.38973954, y: -0.26508692, z: 0.24287502, w: 0.84784657}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 52.152, y: -25.091, z: 19.54}
 --- !u!1 &803080230
 GameObject:
   m_ObjectHideFlags: 0
@@ -507,7 +507,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
+  m_DynamicOccludee: 0
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -517,7 +517,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 766dfd10d6b2480429f951319dc7fe1e, type: 2}
+  - {fileID: 2100000, guid: 587c237a5a0a30741bafa99bbe135f64, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -546,7 +546,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 803080230}
-  m_Mesh: {fileID: 4300000, guid: 864823b5f3b3cae42ad5bc9e592cb649, type: 2}
+  m_Mesh: {fileID: 4300000, guid: 2551d09d93ffb684a930a89da933a59a, type: 2}
 --- !u!114 &803080233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -559,39 +559,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aacb1ab985f8f454a9084a3dc847b84b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurvePreset: {fileID: 11400000, guid: 0ab8481dd7ec91443a890a76f7744bff, type: 2}
+  CurvePreset: {fileID: 11400000, guid: fb59b543c17bad842aa452b6a5ab263d, type: 2}
+  Type: 1
   GenerateWires: 1
   Spacing: 0.12
-  Decimatation: 0.055
-  Radius: 0.005
-  Edges: 3
-  Element: {fileID: -2182254410458406269, guid: 713f3e3ee6216794ca178394eae8a9d9,
-    type: 3}
+  Decimatation: 0.65
+  Radius: 0.1
+  Edges: 8
+  Element: {fileID: 0}
   ElementsScale: 2
   ElementsSpacing: 0.15
-  DirectionRandomization: 0.3
+  DirectionRandomization: 0.855
   RandomizeRotation: 1
   GeneratePerElementWires: 0
   ElementOffset: 0
+  GenerateLightmapUV: 0
   LightmapPadding: 0.157
   RandomSeed: 0
   Points:
-  - {x: -1.8580995, y: 2.5010357, z: -1.7977576}
-  - {x: 0.6623987, y: 2.555437, z: -2.235907}
-  - {x: 2.3406405, y: 2.6098385, z: -0.4975031}
-  - {x: 2.1647062, y: 2.7186413, z: 1.5882673}
-  - {x: 0.64551604, y: 2.6385474, z: 3.1884873}
-  - {x: -1.6000866, y: 2.5985003, z: 2.8053243}
-  - {x: -2.838705, y: 2.50087, z: 0.89598703}
-  - {x: -2.1148496, y: 2.5147042, z: -1.493398}
+  - {x: -1.8580995, y: 3.1988132, z: -1.710763}
+  - {x: -0.011553824, y: 3.520118, z: -1.815656}
+  - {x: 1.5490402, y: 2.391396, z: -1.1288512}
+  - {x: 1.714739, y: 1.9581262, z: 1.0026026}
+  - {x: 0.6796999, y: 2.7098205, z: 2.8042223}
+  - {x: -1.6000866, y: 3.129958, z: 2.8663876}
+  - {x: -2.838705, y: 3.26709, z: 0.9721246}
+  - {x: -2.2676377, y: 3.164254, z: -1.6941249}
   Sags:
-  - -2.2853203
-  - -2.6376524
-  - -2.5146658
-  - -2.9990535
-  - -3.137333
-  - -3.1342335
-  - -2.798813
+  - -2.5305347
+  - -3.4952512
+  - -2.052289
+  - -2.1980276
+  - -3.0344346
+  - -2.863791
+  - -3.4391036
   _lastInstanceID: 803080230
   _editorSelectedParentTransform: {fileID: 0}
   _editorCurtag: 0
@@ -600,7 +601,7 @@ MonoBehaviour:
   Filter: {fileID: 803080232}
   Renderer: {fileID: 803080231}
   IsValidated: 0
-  _curvePresetPrev: {fileID: 11400000, guid: 0ab8481dd7ec91443a890a76f7744bff, type: 2}
+  _curvePresetPrev: {fileID: 11400000, guid: fb59b543c17bad842aa452b6a5ab263d, type: 2}
 --- !u!4 &803080234
 Transform:
   m_ObjectHideFlags: 0
@@ -702,8 +703,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: -0.037183803, y: -0.8641306, z: 0.064360455, w: -0.49774826}
+  m_LocalPosition: {x: 0.47977352, y: 2.1738238, z: 1.6020784}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
