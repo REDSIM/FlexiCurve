@@ -8,10 +8,12 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: SphereLamp Flow
-  m_Shader: {fileID: 4800000, guid: aa6cefc3ffc617c4f969f646133ec637, type: 3}
+  m_Shader: {fileID: 4800000, guid: bc27599b8a6d551439ba19104b638552, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _LIGHTVOLUMES_ON
+  - _SPECULARS_ON
   m_InvalidKeywords: []
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
@@ -23,31 +25,15 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _BumpMap:
+    - _ElementAlbedo:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailAlbedoMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailMask:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailNormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Element:
-        m_Texture: {fileID: 2800000, guid: 441e5df4576d841428f6c19a3a551b0d, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _ElementMask:
-        m_Texture: {fileID: 2800000, guid: 441e5df4576d841428f6c19a3a551b0d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ElementNormal:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ElementWireMAOES:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -55,38 +41,22 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _GradientMap:
+    - _EmissionMap1:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ScrollingMap:
         m_Texture: {fileID: 2800000, guid: a5333a23d8b017d42ad7ea95116c483d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Lamp:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _LampMask:
-        m_Texture: {fileID: 2800000, guid: 1dd51959867131f4a82e25721a9f8ccb, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: acc68b7d828dcf34e8ece4dda6ae5804, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MetallicGlossMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _OcclusionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _ParallaxMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Wire:
+    - _WireAlbedo:
         m_Texture: {fileID: 2800000, guid: 6ab3bf657b68d194fabdd422fc40db7c, type: 3}
-        m_Scale: {x: 2, y: 4}
-        m_Offset: {x: 1, y: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _WireMAOES:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _WireNormal:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -97,37 +67,29 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Brightness: 16.57
-    - _BumpScale: 1
-    - _Cutoff: 0.5
-    - _DetailNormalMapScale: 1
-    - _DstBlend: 0
-    - _ElementNormalWeight1: 0
+    - _Culling: 2
+    - _DominantDirSpeculars: 0
+    - _ElementAO: 0
+    - _ElementMetallic: 0
+    - _ElementNormalWeight1: 1
     - _ElementSmoothness: 0.5
-    - _GlossMapScale: 1
-    - _Glossiness: 0
-    - _GlossyReflections: 1
-    - _HueShiftSpeed: 0
-    - _LampSmoothness: 0
-    - _Metallic: 0
-    - _Mode: 0
-    - _OcclusionStrength: 1
-    - _Parallax: 0.02
+    - _GlowingBrightness: 16.9
+    - _LightVolumes: 1
+    - _LightVolumesBias: 0
     - _Scale: 2
-    - _SmoothnessTextureChannel: 0
-    - _SpecularHighlights: 1
+    - _ScrollingBrightness: 25
+    - _ScrollingHueShiftSpeed: 0
+    - _Speculars: 1
     - _Speed: 0.1
-    - _SrcBlend: 1
-    - _UVSec: 0
-    - _WireNormalWeight: 0
+    - _WireAO: 0
+    - _WireMetallic: 0
+    - _WireNormalWeight: 1
     - _WireSmoothness: 0
-    - _ZWrite: 1
     - __dirty: 0
     m_Colors:
-    - _Color: {r: 1, g: 0.5351767, b: 0.1566037, a: 1}
-    - _Color1: {r: 0.8415094, g: 0.48309588, b: 0.093677394, a: 1}
-    - _ElementColor: {r: 1, g: 1, b: 1, a: 0}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _LampColor: {r: 0.26037723, g: 0.26037723, b: 0.26037723, a: 0}
-    - _WireColor: {r: 0.4490564, g: 0.4490564, b: 0.4490564, a: 0}
+    - _ElementColor: {r: 0.19999999, g: 0.19999999, b: 0.19999999, a: 0}
+    - _ElementEmissionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _ScrollingColor: {r: 1, g: 0.66460186, b: 0.27058828, a: 1}
+    - _WireColor: {r: 0.3433962, g: 0.3433962, b: 0.3433962, a: 0}
+    - _WireEmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []

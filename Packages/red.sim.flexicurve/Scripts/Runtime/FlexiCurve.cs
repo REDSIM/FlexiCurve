@@ -13,6 +13,7 @@ namespace Flexicurve {
         public FlexiCurvePreset CurvePreset;
 
         [Header("Curve Mesh")]
+        public WireType Type = WireType.Wire;
         public bool GenerateWires = true;
         [Min(0.05f)] public float Spacing = 0.1f;
         [Range(0, 1)] public float Decimatation = 0.15f;
@@ -29,6 +30,7 @@ namespace Flexicurve {
         public float ElementOffset = 0.1f;
 
         [Header("Other Settings")]
+        public bool GenerateLightmapUV = false;
         [Range(0, 0.9f)] public float LightmapPadding = 0.1f;
         public int RandomSeed;
 
@@ -44,7 +46,7 @@ namespace Flexicurve {
         public float _editorSagMin = -0.5f;
         public float _editorSagMax = -0.1f;
 
-        public WireMesh[] WireSegments {
+        public FlexiMeshBase[] WireSegments {
             get {
 #if UNITY_EDITOR
                 if (_wireSegments == null) OnValidate();
@@ -53,7 +55,7 @@ namespace Flexicurve {
             }
         }
 
-        private WireMesh[] _wireSegments;
+        private FlexiMeshBase[] _wireSegments;
 
         [HideInInspector] public MeshFilter Filter;
         [HideInInspector] public MeshRenderer Renderer;
@@ -81,6 +83,7 @@ namespace Flexicurve {
             if (preset == null) return;
 
             // Curve Mesh
+            Type = preset.Type;
             GenerateWires = preset.GenerateWires;
             Spacing = preset.Spacing;
             Decimatation = preset.Decimatation;
@@ -127,7 +130,7 @@ namespace Flexicurve {
             _vertices.Clear();
             _normals.Clear();
             _uv0.Clear();
-            _uv1.Clear();
+            if (GenerateLightmapUV) _uv1.Clear();
             _triangles.Clear();
 
             int offset = 0;
@@ -145,7 +148,11 @@ namespace Flexicurve {
             }
 
             // Segments to draw
-            _wireSegments = new WireMesh[Sags.Length];
+            if(Type == WireType.Wire) {
+                _wireSegments = new SimpleBezierWireMesh[Sags.Length];
+            } else {
+                _wireSegments = new SimpleBezierTinselMesh[Sags.Length];
+            }
 
             // Defining variables before multiple loops
             float elementAngle = 0; // Random agle of the lamp
@@ -161,7 +168,10 @@ namespace Flexicurve {
 
             // Adding lamp points
             for (int i = 0; i < _wireSegments.Length; i++) {
-                _wireSegments[i] = new WireMesh(Points[i], Points[i + 1], Sags[i], Radius, Spacing, Edges, _decimate, true);
+                if (Type == WireType.Wire)
+                    _wireSegments[i] = new SimpleBezierWireMesh(Points[i], Points[i + 1], Sags[i], Radius, Spacing, Edges, _decimate);
+                else
+                    _wireSegments[i] = new SimpleBezierTinselMesh(Points[i], Points[i + 1], Sags[i], Radius, Spacing, Edges, _decimate);
                 elementPoints[i] = new List<Vector3>();
                 elementPoints[i].AddRange(_wireSegments[i].Curve.GetUniformPointArray(ElementsSpacing));
                 if (elementPoints[i].Count > 2) elementCount += elementPoints[i].Count - 2;
@@ -188,12 +198,13 @@ namespace Flexicurve {
                     offset = _vertices.Count;
 
                 }
-
-                // Generating lightmap uv for wire segments
-                for (int i = 0; i < _wireSegments.Length; i++) {
-                    for (int u = 0; u < _wireSegments[i].UV1.Length; u++) {
-                        Vector2 shift = new Vector2(((float)i % uvSideSize + LightmapPadding / 2) / uvSideSize, (Mathf.Floor((float)i / uvSideSize) + LightmapPadding / 2) / uvSideSize);
-                        _uv1.Add(shift + _wireSegments[i].UV1[u] * (1 - LightmapPadding) / uvSideSize);
+                if (GenerateLightmapUV) {
+                    // Generating lightmap uv for wire segments
+                    for (int i = 0; i < _wireSegments.Length; i++) {
+                        for (int u = 0; u < _wireSegments[i].UV1.Length; u++) {
+                            Vector2 shift = new Vector2(((float)i % uvSideSize + LightmapPadding / 2) / uvSideSize, (Mathf.Floor((float)i / uvSideSize) + LightmapPadding / 2) / uvSideSize);
+                            _uv1.Add(shift + _wireSegments[i].UV1[u] * (1 - LightmapPadding) / uvSideSize);
+                        }
                     }
                 }
 
@@ -269,7 +280,7 @@ namespace Flexicurve {
                                 _vertices.Add(vert); // Filling vertices array
                                 _normals.Add((vert - from).normalized);
                                 _uv0.Add(new Vector4(0, holdingWireYUV, 0, 0));
-                                _uv1.Add(shift);
+                                if (GenerateLightmapUV) _uv1.Add(shift);
 
                                 int vv = v + 1;
 
@@ -299,7 +310,7 @@ namespace Flexicurve {
                                 _vertices.Add(vert); // Filling vertices array
                                 _normals.Add((vert - to).normalized);
                                 _uv0.Add(new Vector4(holdingWireXUV, holdingWireYUV, 0, 0));
-                                _uv1.Add(shift);
+                                if (GenerateLightmapUV) _uv1.Add(shift);
                             }
 
                         }
@@ -323,9 +334,11 @@ namespace Flexicurve {
                                 _uv0.Add(Vector4.zero);
                             }
 
-                            // Lightmap UV
-                            if (elementUV2.Length > 0) _uv1.Add(shift + elementUV2[v] * (1 - LightmapPadding) / uvSideSize);
-                            else _uv1.Add(shift);
+                            if (GenerateLightmapUV) {
+                                // Lightmap UV
+                                if (elementUV2.Length > 0) _uv1.Add(shift + elementUV2[v] * (1 - LightmapPadding) / uvSideSize);
+                                else _uv1.Add(shift);
+                            }
 
                         }
 
@@ -354,7 +367,7 @@ namespace Flexicurve {
             Filter.sharedMesh.triangles = _triangles.ToArray();
             Filter.sharedMesh.normals = _normals.ToArray();
             Filter.sharedMesh.SetUVs(0, _uv0.ToArray());
-            Filter.sharedMesh.SetUVs(1, _uv1.ToArray());
+            if (GenerateLightmapUV) Filter.sharedMesh.SetUVs(1, _uv1.ToArray());
             Filter.sharedMesh.RecalculateBounds();
 
         }
@@ -377,7 +390,33 @@ namespace Flexicurve {
             AssetDatabase.SaveAssetIfDirty(mesh);
 
         }
+
+        [ContextMenu("Save As Preset")]
+        private void SavePreset() {
+            
+            FlexiCurvePreset preset = new FlexiCurvePreset(this);
+
+            string defaultName = "FlexiCurve Preset";
+            string defaultDirectory = "Assets";
+
+            string newPath = EditorUtility.SaveFilePanelInProject("Save Preset", defaultName, "asset", "Where to save FlexiCurve Preset", defaultDirectory);
+
+            if (string.IsNullOrEmpty(newPath))
+                return;
+
+
+            AssetDatabase.CreateAsset(preset, newPath);
+
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+        }
+
 #endif
+
+        public enum WireType {
+            Wire,
+            Tinsel
+        }
 
     }
 }

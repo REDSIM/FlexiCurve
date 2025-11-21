@@ -2,7 +2,7 @@
 
 namespace Flexicurve {
 
-    public class WireMesh : BezierMesh {
+    public class SimpleBezierTinselMesh : BezierTinselMesh {
 
         private Vector3 _a = Vector3.zero;
         public Vector3 A {
@@ -31,14 +31,13 @@ namespace Flexicurve {
             }
         }
 
-        public WireMesh() { }
+        public SimpleBezierTinselMesh() { }
 
-        public WireMesh(Vector3 a, Vector3 b, float sag, float radius, float spacing, int edges, float decimation, bool closedSides) {
+        public SimpleBezierTinselMesh(Vector3 a, Vector3 b, float sag, float radius, float spacing, int edges, float decimation) {
             Curve = Utils.BezierWire(a, b, sag);
             Radius = radius;
             Edges = edges;
             Spacing = spacing;
-            ClosedSides = closedSides;
             Decimation = decimation;
         }
 
