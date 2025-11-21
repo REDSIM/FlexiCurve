@@ -149,6 +149,8 @@ namespace Flexicurve {
 
             FlexiCurve garland = (FlexiCurve)target;
 
+            if (garland == null || garland.Points == null) return;
+
             if (garland._lastInstanceID == 0) {
                 garland._lastInstanceID = GetLocalID(garland.gameObject);
                 serializedObject.ApplyModifiedProperties();

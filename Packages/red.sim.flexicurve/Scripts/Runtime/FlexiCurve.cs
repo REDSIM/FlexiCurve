@@ -411,6 +411,12 @@ namespace Flexicurve {
             AssetDatabase.Refresh();
         }
 
+        public void Reset() {
+            TryGetComponent(out Renderer);
+            TryGetComponent(out Filter);
+            Renderer.material = AssetDatabase.GetBuiltinExtraResource<Material>("Default-Material.mat");
+        }
+
 #endif
 
         public enum WireType {
