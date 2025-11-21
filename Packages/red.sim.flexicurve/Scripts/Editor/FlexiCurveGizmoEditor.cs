@@ -349,7 +349,7 @@ namespace Flexicurve {
                     Handles.color = Color.yellow;
                     Handles.DrawWireDisc(hit.point, hit.normal, circleGizmoSize);
 
-                    if (Event.current.type == EventType.MouseDown && Event.current.button == 0) {
+                    if (Event.current.type == EventType.MouseDown && (Event.current.button == 0 || Event.current.button == 1)) {
 
                         // Recording Undo
                         Undo.RecordObject(garland, "Adding FlexiCurve Point");
@@ -359,9 +359,15 @@ namespace Flexicurve {
                         List<float> sags = new List<float>(garland.Sags);
 
                         // Editing arrays
-                        points.Add(garland.transform.InverseTransformPoint(hit.point));
-                        if (sags.Count > 0) sags.Add(sags[sags.Count - 1]);
-                        else sags.Add(-0.1f);
+                        if (Event.current.button == 0) {
+                            points.Add(garland.transform.InverseTransformPoint(hit.point));
+                            if (sags.Count > 0) sags.Add(sags[sags.Count - 1]);
+                            else sags.Add(-0.1f);
+                        } else if (Event.current.button == 1) {
+                            points.Insert(0, garland.transform.InverseTransformPoint(hit.point));
+                            if (sags.Count > 0) sags.Insert(0, sags[0]);
+                            else sags.Insert(0, -0.1f);
+                        }
 
                         // Apply points array
                         garland.Points = points.ToArray();
