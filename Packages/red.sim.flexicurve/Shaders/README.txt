@@ -1,0 +1,1 @@
+Shaders here are possible to edit with Amplify Shader Editor, however be sure that you have VRC Light Volumes installed in your project. Otherwise, shaders will break!

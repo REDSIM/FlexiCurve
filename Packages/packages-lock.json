@@ -16,6 +16,13 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+    "com.unity.editorcoroutines": {
+      "version": "1.0.0",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
     "com.unity.ext.nunit": {
       "version": "1.0.6",
       "depth": 1,
@@ -103,6 +110,15 @@
       "depth": 0,
       "source": "embedded",
       "dependencies": {}
+    },
+    "red.sim.lightvolumes": {
+      "version": "https://github.com/REDSIM/VRCLightVolumes.git?path=/Packages/red.sim.lightvolumes",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.editorcoroutines": "1.0.0"
+      },
+      "hash": "7ead7482f40b9612e6e4faafae835ffd9a73e149"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

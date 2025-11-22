@@ -46,7 +46,7 @@ Shader "FlexiCurve/Fairy Lights"
 		CGINCLUDE
 		#include "UnityStandardUtils.cginc"
 		#include "UnityShaderVariables.cginc"
-		#include "Packages/red.sim.lightvolumes/Shaders/LightVolumes.cginc"
+		#include "LightVolumes.cginc"
 		#include "UnityStandardBRDF.cginc"
 		#include "UnityPBSLighting.cginc"
 		#include "Lighting.cginc"
