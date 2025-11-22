@@ -4,7 +4,9 @@ This is a free open-source Unity asset for procedural generating curve-based mes
 
 If you liked this asset, I would be very happy if you **[Support me on Patreon](https://www.patreon.com/red_sim/ "Support me on Patreon")**, there is a bunch of other cool assets you will get there.
 
-If you want to buy extra FlexiCurve presets and support my work **[Check my Booth store.](https://redsim.booth.pm/)**
+If you want to buy extra FlexiCurve presets and support my work **[Check my Booth store.](https://redsim.booth.pm/items/7676455)**
+
+If you have any problems or questions about this asset, you can visit my [Discord server](https://discord.gg/TCRAUBs).
 
 ## Main features
 - Creating fairy lights
